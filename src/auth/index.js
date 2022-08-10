@@ -1,7 +1,9 @@
 const express = require('express')
 const httpErrors = require('http-errors')
 const cors = require('cors')
+
 const { green } = require('../utils/console')
+const { openBrowser } = require('../utils/server')
 
 const app = express()
 const hostname = 'localhost'
@@ -27,12 +29,7 @@ app.listen(port, () => {
   const url = `http://${hostname}:${port}`
 
   try {
-    const start = (process.platform === 'darwin'
-      ? 'open'
-      : process.platform === 'win32'
-        ? 'start'
-        : 'xdg-open')
-    require('child_process').exec(start + ' ' + url)
+    openBrowser(url)
     console.log(`Browser session started at ${url}`)
   } catch {
     console.log(`Open browser session at ${url}`)
