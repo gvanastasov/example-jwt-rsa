@@ -8,10 +8,10 @@ app.get('/', (request, response) => {
 })
 
 app.listen(port, () => {
-  console.log('Listen on the port 3000...')
+  console.log(`Listen on the port ${port}...`)
 
   try {
-    const url = 'http://localhost:3000'
+    const url = `http://localhost:${port}`
     const start = (process.platform === 'darwin'
       ? 'open'
       : process.platform === 'win32'
