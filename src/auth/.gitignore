@@ -1,3 +1,7 @@
+# Generators
+certs/*
+!certs/.gitkeep
+
 # Logs
 logs
 *.log
