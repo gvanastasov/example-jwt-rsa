@@ -1,3 +1,4 @@
+// Global dependencies
 const express = require('express')
 const httpErrors = require('http-errors')
 const cors = require('cors')
@@ -5,14 +6,14 @@ const cors = require('cors')
 const { green } = require('../utils/console')
 const { openBrowser } = require('../utils/server')
 
+// Local dependencies
+const indexRouter = require('./routes/index')
+
 const app = express()
 const hostname = 'localhost'
 const port = 3001
 
-app.get('/', (_request, response) => {
-  const data = { message: 'Hello world' }
-  response.send(data)
-})
+app.use('/', indexRouter)
 
 app.use((_request, _response, next) => {
   next(httpErrors.NotFound())
