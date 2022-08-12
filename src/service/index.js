@@ -1,6 +1,7 @@
 // Global dependencies
 const express = require('express')
 const { expressjwt: jwt } = require('express-jwt')
+const jwksClient = require('jwks-rsa')
 const cors = require('cors')
 
 const { green } = require('../utils/console')
@@ -23,7 +24,11 @@ app.use(cors())
 app
   .use(
     jwt({
-      secret: 'aa',
+      secret: jwksClient.expressJwtSecret({
+        jwksUri: 'http://localhost:3001/.well-known/jwks',
+        cache: true,
+        rateLimit: true
+      }),
       algorithms: ['RS256']
     })
       .unless({
