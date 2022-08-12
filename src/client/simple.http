@@ -1,0 +1,9 @@
+### Public service endpoint
+GET http://localhost:3002/
+
+### Protected service endpoint
+###
+### remember, bearer token has to be regenerated from service token endpoint
+### due to expiration policy.
+GET http://localhost:3002/protected
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjAzMTQwMzgsImV4cCI6MTY2MDMxNzYzOH0.guqc9nba4mFXcOpDI-tDzig2L-gnWQxXPqipw67i_o-c3Gxn2J-IogZElUbmsxhcJiwbO1XMwaJr9Unf2HPjSf63dRcMOHGSsIeyGW0vqDsYAFpqnmbkrkTpbxZHmQAhDde2RDGg_RHglPXNJm1vcoYWP_hE6gntkCzGKL39cVsmiXsE2peKwi_FeFF2ndhmSCvzBlpMs2wZTnk3oN8pdSpM3GfQtlr8dpf_Knf4mwLZxtXOee4KWQvqQVn_pAhbRaGKkXTZr9XuMoYj-lYQMGD-re1G4oWSmeHRB7KQ3LiZttSlfa0uePrtBr_ND3yVUq3cioKcbd1SJGp3tGnU5Q
