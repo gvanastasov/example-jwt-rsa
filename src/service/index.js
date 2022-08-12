@@ -1,26 +1,49 @@
+// Global dependencies
 const express = require('express')
+const { expressjwt: jwt } = require('express-jwt')
+const cors = require('cors')
 
+const { green } = require('../utils/console')
+const { openBrowser } = require('../utils/server')
+
+// Local dependencies
+const { router, routes, fallbackRouteHandler } = require('./routes/index')
+
+// Init
 const app = express()
-const port = 3000
+const hostname = 'localhost'
+const port = 3002
 
-app.get('/', (request, response) => {
-  response.send('Hello world')
-})
+// Configuring body parser middleware
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 
+// Configuring security
+app.use(cors())
+app
+  .use(
+    jwt({
+      secret: 'aa',
+      algorithms: ['RS256']
+    })
+      .unless({
+        path: [routes.index]
+      })
+  )
+
+// Configuring routing
+app.use('/', router)
+app.use(fallbackRouteHandler)
+
+// Start
 app.listen(port, () => {
-  console.log(`Listen on the port ${port}...`)
+  console.log(green('Service started successfully...'))
+  const url = `http://${hostname}:${port}`
 
   try {
-    const url = `http://localhost:${port}`
-    const start = (process.platform === 'darwin'
-      ? 'open'
-      : process.platform === 'win32'
-        ? 'start'
-        : 'xdg-open')
-    require('child_process').exec(start + ' ' + url)
-
-    console.log('Browser session started...')
+    openBrowser(url)
+    console.log(`Browser session started at ${url}`)
   } catch {
-    console.log('Unable to open browser...')
+    console.log(`Open browser session at ${url}`)
   }
 })
