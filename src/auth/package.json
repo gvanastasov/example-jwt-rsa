@@ -4,7 +4,7 @@
   "description": "A simple node service api.",
   "main": "index.js",
   "scripts": {
-    "server": "node index.js",
+    "start": "node index.js",
     "lint:fix": "eslint --fix ./*.js",
     "certs:generate": "node utils/generator.js"
   },
