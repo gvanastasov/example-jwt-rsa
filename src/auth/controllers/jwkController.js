@@ -8,8 +8,7 @@ exports.index = function (_request, response) {
   const buffer = fs.readFileSync('./certs/private.pem')
   const secret = buffer.toString().replace(/\r\n/g, '\n')
   const jwk = rsaPemToJwk(secret, { use: 'sig' }, 'public')
-  console.log(secret)
-  console.log(jwk)
+
   response.send({
     keys: [
       jwk
